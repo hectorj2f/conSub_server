@@ -4,8 +4,11 @@ debug:
 tornado:
   port: 8888
 
+sqlite:
+  db_name: topics.db
+
 postgres:
   db_host: 192.168.59.103
   db_name: consub
   db_user: consub
-  db_pass: password
+  db_pwd: password

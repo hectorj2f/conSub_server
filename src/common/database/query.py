@@ -8,6 +8,9 @@ def find(query, data):
         cursor = postgresClient.cursor()
         cursor.execute(query, data)
         values = cursor.fetchall()
+
+        logger.debug(values)
+
         return values
 
     except Exception as error:
@@ -18,7 +21,7 @@ def add(query, data):
     try:
         cursor = postgresClient.cursor()
         cursor.execute(query, data)
-        cursor.commit()
+        postgresClient.commit()
 
     except Exception as error:
         postgresClient.rollback()
@@ -29,7 +32,7 @@ def delete(query, data):
     try:
         cursor = postgresClient.cursor()
         cursor.execute(query, data)
-        cursor.commit()
+        postgresClient.commit()
 
     except Exception as error:
         postgresClient.rollback()
