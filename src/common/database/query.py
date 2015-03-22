@@ -5,11 +5,10 @@ from common.database.connection import postgresClient
 
 def find(query, data):
     try:
+        logger.info("Query find: {0} ".format(query))
         cursor = postgresClient.cursor()
         cursor.execute(query, data)
         values = cursor.fetchall()
-
-        logger.debug(values)
 
         return values
 
@@ -19,6 +18,7 @@ def find(query, data):
 
 def add(query, data):
     try:
+        logger.info("Query add: {0} ".format(query))
         cursor = postgresClient.cursor()
         cursor.execute(query, data)
         postgresClient.commit()
@@ -30,6 +30,7 @@ def add(query, data):
 
 def delete(query, data):
     try:
+        logger.info("Query delete: {0} ".format(query))
         cursor = postgresClient.cursor()
         cursor.execute(query, data)
         postgresClient.commit()

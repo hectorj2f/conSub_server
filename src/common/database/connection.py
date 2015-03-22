@@ -7,11 +7,11 @@ from common.config import settings
 from common.log import logger
 
 #CREATE TABLE "messages" ("topic" text, "username" text, "message" text, "created" timestamp default localtimestamp);
-initialization_script="""DROP TABLE IF EXISTS "subscriptors";
+initialization_script="""DROP TABLE IF EXISTS "subscribers";
                         DROP TABLE IF EXISTS "messages";
-                        CREATE TABLE "subscriptors" ("topic" text, "username" text);
+                        CREATE TABLE "subscribers" ("topic" text, "username" text);
                         CREATE TABLE "messages" ("topic" text, "username" text, "message" text, "created" timestamp default current_timestamp not null);
-                        INSERT INTO "subscriptors" VALUES ('football','hector');
+                        INSERT INTO "subscribers" VALUES ('football','hector');
                         INSERT INTO "messages" VALUES ('football','hector', 'Viva Real Oviedo FC', '2010-08-28T13:40:02.200');
                         """
 
@@ -27,8 +27,8 @@ try:
 
     postgresClient.commit()
 except Exception as error:
-    #if postgresClient:
-    #    postgresClient.rollback()
+    if postgresClient:
+        postgresClient.rollback()
 
     print(error.message)
     sys.exit(1)
